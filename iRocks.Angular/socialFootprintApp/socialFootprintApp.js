@@ -374,9 +374,9 @@
         };
     }]);
 
-    var serviceBase = 'http://192.168.0.17/Service/';
+    //var serviceBase = 'http://192.168.0.17/Service/';
     //var serviceBase = 'http://localhost/Service/';
-    //var serviceBase = 'http://socialfootprintapi.azurewebsites.net/';
+    var serviceBase = 'http://socialfootprintapi.azurewebsites.net/';
     app.constant('ngAuthSettings', {
         apiServiceBaseUri: serviceBase,
         clientId: 'ngAuthApp'
