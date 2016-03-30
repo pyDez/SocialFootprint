@@ -1,0 +1,61 @@
+﻿(function (app) {
+
+    var profileController = function ($scope, profileService, $routeParams, footprintTools, $window, $timeout) {
+       
+
+        var _parseProfile = function (data) {
+
+            $scope.profile = data;
+
+
+            var tempPost = data.Posts.slice(0); //clone des posts
+            $scope.profile.Posts = [];
+            for (i = 0; i < tempPost.length; i++) {
+                $scope.profile.Posts.push({
+                    Post: tempPost[i],
+                    User: data
+                });
+            }
+            $scope = footprintTools.initFootprint($scope, $scope.profile.Footprint);
+            $timeout(function () {
+                $scope = footprintTools.createFootprint($scope, $scope.profile.Footprint);
+            },100);
+        };
+
+        var _getMyProfile = function () {
+            profileService.getMyProfile("Friends").then(function (results) {
+
+                _parseProfile(results.data);
+
+            }, function (error) {
+                //alert(error.data.message);
+            });
+        };
+
+
+        if (!$routeParams.appuserid) {
+            _getMyProfile();
+        }
+        else {
+            profileService.getProfile($routeParams.appuserid).then(function (results) {
+
+                _parseProfile(results.data[0]);
+            }, function (error) {
+                _getMyProfile();
+            });
+        }
+
+        var _openInNewTab = function (href) {
+            footprintTools.openInNewTab($window, href)
+        };
+
+
+        $scope.isDuel = false;
+        $scope.openInNewTab = _openInNewTab;
+
+
+
+    };
+    app.controller("profileController", ["$scope", 'profileService', '$routeParams', 'footprintTools', '$window', '$timeout', profileController]);
+}(angular.module("socialFootprintApp")));
+

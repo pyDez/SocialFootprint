@@ -1,0 +1,58 @@
+﻿<div class="col-md-12">
+    <button id="addTopContentBtn" ng-if="moreQueue" ng-click="transferWait()" class="btn btn-warning">
+        {{translationService.translations.DISPLAY_MORE}}
+    </button>
+</div>
+<div ng-if="!dataLoaded" class="text-center feedLoader">
+
+    <img src="images/Loader.GIF" />
+</div>
+
+<div id="NewsfeedContainer" ng-if="(sharedFromService.currentBreakpoint == 'lg' || sharedFromService.currentBreakpoint == 'md')" infinite-scroll="loadMore()" infinite-scroll-disabled='scrollBusy' infinite-scroll-distance='1'>
+
+    <div ng-repeat=" duel in feeds" class="list-group aDuelContainer" scroll-item>
+
+        <div class="col-md-12 aDuel" ng-class="{'list-group-item-success': duel.isVoted, 'list-group-item-danger': !duel.isVoted}">
+
+            <div class="text-center lead category">{{duel.FirstPublication.Post.PostCategory.Label}}</div>
+
+
+            <div class="row">
+                <div class="transformable" ng-class="{ 'col-md-6':!duel.isVoted, 'looser': duel.FirstPublication.Looser,  'col-md-4' : duel.isVoted && duel.FirstPublication.Looser, 'col-md-8' : duel.isVoted && !duel.FirstPublication.Looser }">
+                    <div ng-repeat="post in [duel.FirstPublication]" ng-include="'socialFootprintApp/post/post.html'"></div>
+
+                </div>
+               
+                <div class="transformable " ng-if="duel.SecondPublication" ng-class="{'col-md-6':!duel.isVoted, 'looser': duel.SecondPublication.Looser , 'col-md-4' : duel.isVoted && duel.SecondPublication.Looser, 'col-md-8' : duel.isVoted && !duel.SecondPublication.Looser }">
+
+                    <div ng-repeat="post in [duel.SecondPublication]" ng-include="'socialFootprintApp/post/post.html'"></div>
+                </div>
+
+            </div>
+
+        </div>
+        
+
+
+    </div>
+</div>
+
+
+
+
+<div id="NewsfeedContainer" ng-if="(sharedFromService.currentBreakpoint == 'xs' || sharedFromService.currentBreakpoint == 'sm')" infinite-scroll="loadMore()" infinite-scroll-disabled='scrollBusy' infinite-scroll-distance='1'>
+
+        <div ng-repeat=" duel in feeds">
+            <section class="cubeContainer col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10" set-cube-size-on-load swipe-effect>
+                <div id="" class="cube show-front">
+                    <figure class="left overlayShadow" ng-class="{'list-group-item-success': duel.isVoted, 'list-group-item-danger': !duel.isVoted}">
+                        <div ng-repeat="post in [duel.FirstPublication]" ng-include="'socialFootprintApp/post/post.html'"></div>
+                        
+                    </figure>
+                    <figure class="right" ng-class="{'list-group-item-success': duel.isVoted, 'list-group-item-danger': !duel.isVoted}">
+                        <div ng-repeat="post in [duel.SecondPublication]" ng-include="'socialFootprintApp/post/post.html'"></div>
+                    </figure>
+                </div>
+            </section>
+        </div>
+    </div>

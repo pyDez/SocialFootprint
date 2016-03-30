@@ -1,0 +1,36 @@
+﻿<div class="row">
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="col-md-8">
+        <h3>{{translationService.translations.ASSOCIATE}} {{registerData.provider}} {{translationService.translations.ASSOCIATE_ACCOUNT}}</h3>
+        <hr />
+        <p class="text-success">{{translationService.translations.CONGRATULATIONS}} {{registerData.userName}} {{translationService.translations.CONGRATULATIONS_2}}<strong>{{registerData.provider}} </strong>. {{translationService.translations.CONGRATULATIONS_3}}</p>
+        <div class="row">
+            <div class="col-md-3">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                <!--<div class="form-group">-->
+                <form class="form-register" name="associateForm" role="form">
+                    <input type="email" class="form-control" placeholder="Email Address" data-ng-model="registerData.email" required autofocus>
+                    <button class="btn btn-sm btn-info btn-block" type="submit" style="margin-top:10px;" data-ng-click="associateForm.$valid && registerExternal()">{{translationService.translations.REGISTER}}</button>
+                </form>
+                
+
+
+
+                <!--</div>-->
+                <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                    {{message}}
+                </div>
+            </div>
+            <div class="col-md-3">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+</div>

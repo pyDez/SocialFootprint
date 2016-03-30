@@ -1,0 +1,128 @@
+﻿<div ng-controller="postController">
+    <div class="panel postContainer" ng-class="{'looser': post.Looser}">
+        <div class=" panel-heading postHead" ng-if="$parent.$parent.duel.isVoted || !$parent.$parent.isDuel">
+            <div>
+                <ul class="list-inline">
+                    <li>
+                        <a href="profile/{{post.User.AppUserId}}">
+                            <img ng-src="http://graph.facebook.com/{{post.User.FacebookDetail.FacebookUserId}}/picture" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profile/{{post.User.AppUserId}}">
+                            <div>{{post.User.FirstName}} {{post.User.LastName}}  </div>
+                        </a>
+                    </li>
+                    <li class="footprintContainerLarge" ng-include="'socialFootprintApp/footprint/footprint.html'"
+                        ng-if="((sharedFromService.currentBreakpoint == 'lg' || sharedFromService.currentBreakpoint == 'md')
+                        && !post.Looser
+                        && !post.isChild
+                        && isFootprintReady)">
+                        test
+                    </li>
+
+                </ul>
+            </div>
+            <div class="footprintContainerSmall" ng-include="'socialFootprintApp/footprint/footprint.html'"
+                 ng-if="((sharedFromService.currentBreakpoint == 'sm' || sharedFromService.currentBreakpoint == 'xs' || post.Looser)
+                 && !post.isChild
+                 && isFootprintReady)">
+
+            </div>
+
+        </div>
+        <div class="panel-body postBody">
+            <div ng-if="categoryBadge!=null" class="postMessage inlineBlock" data-toggle="tooltip" data-trigger="focus" data-placement="top" title="{{categoryBadge.Badge.Explanation}}" tooltip>
+                <img src="images/medal_bronze.png" ng-if="categoryBadge.Badge.Level<30" />
+                <img src="images/medal_silver.png" ng-if="categoryBadge.Badge.Level>=30 && categoryBadge.Badge.Level<50" />
+                <img src="images/medal_gold.png" ng-if="categoryBadge.Badge.Level>=50" />
+                {{categoryBadge.Badge.Label}}
+            </div>
+            <div ng-if="postBadge!=null" class="postMessage inlineBlock" data-toggle="tooltip" data-trigger="focus" data-placement="top" title="{{postBadge.Badge.Explanation}}" tooltip>
+                <img src="images/medal_bronze.png" ng-if="postBadge.Badge.Level<30" />
+                <img src="images/medal_silver.png" ng-if="postBadge.Badge.Level>=30 && categoryBadge.Badge.Level<50" />
+                <img src="images/medal_gold.png" ng-if="postBadge.Badge.Level>=50" />
+                {{postBadge.Badge.Label}}
+            </div>
+            <div class="postMessage" ng-bind-html="post.Post.FacebookDetail.Stories[0].Story | embed" ng-if="$parent.$parent.duel.isVoted || !$parent.$parent.isDuel"></div>
+
+            <!--<div ng-bind-html="post.Post.FacebookDetail.AnonymousStory | embed" ng-if=" !$parent.$parent.duel.isVoted && $parent.$parent.isDuel && $parent.$parent.$parent.post.Post.FacebookDetail.GeneralStatusType!='parent'"></div>-->
+            <!--ng-bind-html="post.Post.FacebookDetail.Message | embed"-->
+            <div class="postMessage"
+                 ng-text-truncate="post.Post.FacebookDetail.Message"
+                 ng-tt-chars-threshold="100"
+                 ng-tt-more-label="{{translationService.translations.SHOW_MORE}}"
+                 ng-tt-less-label="{{translationService.translations.SHOW_LESS}}"></div>
+            <div class="overlayParent">
+
+
+                <div ng-switch="post.Post.FacebookDetail.GeneralStatusType">
+                    <div ng-switch-when="link">
+                        <a ng-click="openInNewTab(post.Post.FacebookDetail.Link)" class="pointer">
+                            <img ng-src="{{post.Post.FacebookDetail.Picture}}" ng-if="post.Post.FacebookDetail.Picture!=null" class="img-thumbnail slowLoading" />
+                            <div ng-bind-html="post.Post.FacebookDetail.LinkName | embed"></div>
+                        </a>
+                    </div>
+                    <div ng-switch-when="status"></div>
+                    <div ng-switch-when="photo">
+                        <img ng-src="{{post.Post.FacebookDetail.Picture}}" ng-if="post.Post.FacebookDetail.Picture!=null" class="img-thumbnail pointer slowLoading" ng-click="zoomIn()" />
+                    </div>
+                    <div ng-switch-when="video">
+                        <div ng-if="post.Post.FacebookDetail.VideoSource!=''">
+
+                            <ng-embed embed-data="post.Post.FacebookDetail.VideoSource" embed-options="videoOptions" embed-template-url="socialFootprintApp/shared/videoTemplate.html"></ng-embed>
+                        </div>
+                        <div ng-if="post.Post.FacebookDetail.VideoSource==''">
+                            <a ng-click="openInNewTab($parent.post.Post.FacebookDetail.Link)" class="pointer">
+                                <img ng-src="{{post.Post.FacebookDetail.Picture}}" class="img-thumbnail pointer slowLoading" />
+                            </a>
+                        </div>
+
+
+
+                    </div>
+                    <div ng-switch-when="parent">
+                        <div class="separator" ng-if="$parent.$parent.duel.isVoted || !$parent.$parent.isDuel"></div>
+                        <div ng-repeat="post in [post.Post.FacebookDetail.ChildPublication]" ng-include="'socialFootprintApp/post/post.html'"></div>
+
+
+                    </div>
+                    <div ng-switch-default>
+                        <a ng-click="openInNewTab($parent.post.Post.FacebookDetail.Link)" class="pointer">
+                            <img ng-src="{{post.Post.FacebookDetail.Picture}}" ng-if="post.Post.FacebookDetail.Picture!=null" class="img-thumbnail pointer slowLoading" />
+                            <div ng-bind-html="post.Post.FacebookDetail.LinkName | embed"></div>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="overlay" ng-if="(sharedFromService.currentBreakpoint == 'xs' || sharedFromService.currentBreakpoint == 'sm')"></div>
+            </div>
+
+            <div class="actionBtns" ng-if="($parent.$parent.$parent.$parent.post.Post.FacebookDetail.GeneralStatusType!='parent')">
+                <div class="btn-group dropdown">
+                    <a class="dropdown-toggle categoryBtn small" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" ng-click="dropdownClick()">
+                        <span class="glyphicon glyphicon-flag">
+                        </span>
+                        <span>{{post.Post.PostCategory.Label}}</span>
+                        <span class="caret">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu aboveOverlay" role="menu">
+                        <li ng-repeat="category in sharedFromService.categories">
+                            <a ng-click="changeCategory(post.Post.PostId, category.CategoryId)">{{category.Label}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="postInfo small lightGrey">
+                    <span title="{{updateTime}}">{{translationService.translations.AGO_BEFORE}} {{sinceTime}} {{translationService.translations.AGO}}  </span>
+                </div>
+            </div>
+            <div class="text-center">
+                <a class="pointer voteBtn " ng-click="$parent.$parent.vote($parent.$parent.duel.FirstPublication.Post.PostId, $parent.$parent.duel.SecondPublication.Post.PostId, post.Post.PostId)" ng-if=" !$parent.$parent.duel.isVoted && $parent.$parent.isDuel && $parent.$parent.$parent.post.Post.FacebookDetail.GeneralStatusType!='parent'">
+                    <span class="glyphicon glyphicon-thumbs-up"> </span> {{translationService.translations.VOTE}}
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

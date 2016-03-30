@@ -1,0 +1,83 @@
+﻿
+
+
+<div ng-switch="stepNb">
+    <div ng-switch-when="1">
+        <div class="modal-header">
+            <h3 class="modal-title">{{translationService.translations.TUTORIAL_1_TITLE}}</h3>
+        </div>
+        <div class="modal-body text-center">
+            <span>
+                {{translationService.translations.TUTORIAL_1_BODY}}<br /><br />
+                {{translationService.translations.TUTORIAL_1_BODY_2}}<br /><br />
+                {{translationService.translations.TUTORIAL_1_BODY_3}}<br /><br />
+                {{translationService.translations.TUTORIAL_1_BODY_4}}
+            </span>
+        </div>
+    </div>
+    <div ng-switch-when="2">
+        <div class="modal-header">
+            <h3 class="modal-title">{{translationService.translations.TUTORIAL_2_TITLE}}</h3>
+        </div>
+        <div class="modal-body text-center">
+            <span class="glyphicon glyphicon-chevron-up"></span><br />
+            <span>
+                {{translationService.translations.TUTORIAL_2_BODY}}
+            </span><br />
+            <span class="glyphicon glyphicon-chevron-down"></span>
+            <br /><br />
+            <span>
+                {{translationService.translations.TUTORIAL_2_BODY_2}}
+            </span>
+        </div>
+    </div>
+    <div ng-switch-when="3">
+        <div class="modal-header">
+            <h3 class="modal-title">{{translationService.translations.TUTORIAL_3_TITLE}}</h3>
+        </div>
+        <div class="modal-body text-center">
+            <span>
+                {{translationService.translations.TUTORIAL_3_BODY}}
+            </span>
+            <span class="glyphicon glyphicon-check"></span>
+            <br /><br />
+            <span>
+               {{translationService.translations.TUTORIAL_3_BODY_2}}
+            </span>
+            <br /><br /><br />
+            <span>
+               {{translationService.translations.TUTORIAL_3_BODY_3}}
+            </span>
+            <span class="glyphicon glyphicon-wrench"></span>
+        </div>
+    </div>
+    <div ng-switch-when="4">
+        <div class="modal-header">
+            <h3 class="modal-title">{{translationService.translations.TUTORIAL_4_TITLE}}</h3>
+        </div>
+        <div class="modal-body text-center">
+            <span>
+               {{translationService.translations.TUTORIAL_4_BODY}}
+            </span>
+            
+        </div>
+    </div>
+    <div ng-switch-default>
+        
+    </div>
+
+    
+</div>
+    <div ng-switch="stepNb">
+        <div ng-switch-when="4">
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="stop()">{{translationService.translations.TUTORIAL_LAST}}</button>
+            </div>
+        </div>
+        <div ng-switch-default>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="stop()">{{translationService.translations.TUTORIAL_STOP}}</button>
+                <button class="btn btn-primary" ng-click="ok()">{{translationService.translations.TUTORIAL_NEXT}}</button>
+            </div>
+        </div>
+    </div>

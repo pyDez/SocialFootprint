@@ -1,0 +1,8 @@
+﻿<span class="badge footprintBadge">{{post.User.VoteLabel}}</span>
+<span class="small voteCounting lightGrey pointer" ng-click="getVoters()">
+    {{post.Post.Score}}
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+</span>
+<div ng-repeat="skill in footprintData">
+    <progressbar ng-if="skill.SkillCategory.CategoryId==$parent.$parent.post.Post.PostCategory.CategoryId" class="progress-striped active" value="skill.SkillLevelAsync" type="{{skill.type}}">{{skill.SkillLevelAsync}} </progressbar>
+</div>

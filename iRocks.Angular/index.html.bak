@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximume-scale=1, user-scalable=no" />
+    <base href="/">
+    <title>Social Footprint</title>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link href="./css/ubuntu.css" rel="stylesheet" />
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/ng-embed.min.css" rel="stylesheet" />
+    <link href="./css/font-awesome.min.css" rel="stylesheet" />
+    <link href="./css/angular-chart.css" rel="stylesheet" />
+    <link href="./css/slick.css" rel="stylesheet" />
+    <link href="./css/slick-theme.css" rel="stylesheet" />
+    <link href="./css/social-buttons.css" rel="stylesheet" />
+    <link href="./css/site.css" rel="stylesheet" />
+</head>
+<body ng-app="socialFootprintApp">
+    <div id="wrap">
+        <div ng-cloak>
+            <header id="header" class="navbar navbar-default navbar-fixed-top" role="banner" data-ng-controller="indexController">
+                <!--<div class="mobileHeader"></div>-->
+                <div class="container container-fluid navBarContainer">
+                    <div class="navbar-header" set-header-margin>
+                        <a class="navbar-brand" href="feed">
+                            <img class="logoImg" src="images/landscape_transparent_180x60.png" />
+                        </a>
+                        <button class="btn btn-default navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse-index" aria-expanded="false" aria-controls="navbar-collapse-index">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <nav id="navbar-collapse-index" class="collapse navbar-collapse">
+                        <form class="navbar-form navbar-left " role="search" data-ng-hide="!authentication.isAuth">
+
+                            <div id="searchBox" class="row">
+
+                                <div class="form-group col-sm-12">
+                                    <div id="searchInputContainer" class=" col-xs-11 col-sm-11">
+                                        <input id="searchInput" type="text" class="form-control " placeholder="{{translations.SEARCH_PLACEHOLDER}}" ng-model="searchText" ng-change="changeSearch()" />
+                                    </div>
+                                    <div id="searchButtonContainer" class="col-xs-1 col-sm-1">
+                                        <button id="searchButton" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="dropdown-menu searchBoxDropDown" ng-if="searchResult.length > 0">
+                                <li ng-repeat="item in searchResult" ng-click="resetSearch()">
+                                    <a href="profile/{{item.AppUserId}}" collapse-menu>
+                                        <img ng-if="item.IsFacebookProvided" class="indexProfilePicture" ng-src="http://graph.facebook.com/{{item.FacebookDetail.FacebookUserId}}/picture" />
+                                        <img ng-if="!item.IsFacebookProvided && item.IsTwitterProvided" class="indexProfilePicture" ng-src="https://twitter.com/{{item.TwitterDetail.ScreenName}}/profile_image?size=normal" />
+                                        {{item.FirstName}} {{item.LastName}}
+                                
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li data-ng-hide="!authentication.isAuth">
+                                <a href="profile" collapse-menu>
+                                    <img ng-if="profile.IsFacebookProvided" class="indexProfilePicture" ng-src="http://graph.facebook.com/{{profile.FacebookDetail.FacebookUserId}}/picture" />
+                                    <img ng-if="!profile.IsFacebookProvided && profile.IsTwitterProvided" class="indexProfilePicture" ng-src="https://twitter.com/{{profile.TwitterDetail.ScreenName}}/profile_image?size=normal" />
+                                    {{profile.FirstName}} {{profile.LastName}}
+                                </a>
+                            </li>
+                            <li class="btn-group" data-ng-hide="!authentication.isAuth " uib-dropdown>
+                                <a id="split-button" href="feed" class="homeDropDown" collapse-menu>{{translations.HOME}}</a>
+                                <a class="homeDropDown" uib-dropdown-toggle>
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Split button!</span>
+                                </a>
+                                <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+                                    <li role="menuitem" ng-if="(shared.currentBreakpoint == 'lg' || shared.currentBreakpoint == 'md')" ><a href="feed" collapse-menu>{{translations.HOME}}</a></li>
+                                    <li role="menuitem"><a href="feed/top" collapse-menu>{{translations.TOP}}</a></li>
+                                    <li role="menuitem"><a href="feed/flop" collapse-menu>{{translations.FLOP}}</a></li>
+                                </ul>
+                            </li>
+                            <li data-ng-hide="!authentication.isAuth || notificationService.notifications.length<=0 || !notificationService.notifications" ng-class="{'clearBoth': shared.currentBreakpoint == 'xs' || shared.currentBreakpoint == 'sm'}">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click="readNotification()" title="{{translations.NOTIFICATION}}">
+                                    <img src="images/glyphicons-bell.png" />
+                                <span class=" badge" ng-if="notificationService.nbNewNotification>0">{{notificationService.nbNewNotification}}</span></a>
+                                <ul id="notificationDropdown" class="dropdown-menu">
+                                    <li ng-repeat="notification in notificationService.notifications" class="notificationItem " ng-switch="notification.ObjectType" ng-if="!notification.IsOld" collapse-menu>
+                                        <a ng-switch-when="Post" role="menuitem" href="post/{{notification.ObjectId}}" >
+
+                                            <div class="glyphicon glyphicon-check notificationIcon"></div>
+                                            <div class="notificationInfo">{{notification.Information}}</div>
+                                            <div title="{{notification.dateWellFormated}}" class="notificationDate text-primary small">{{translations.AGO_BEFORE}}{{notification.sinceTime}} {{translations.AGO}}</div>
+
+                                        </a>
+                                        <a ng-switch-when="AppUser" role="menuitem" href="profile/{{notification.ObjectId}}" >
+
+                                            <div class="glyphicon glyphicon-user notificationIcon"></div>
+                                            <div class="notificationInfo">{{notification.Information}}</div>
+                                            <div title="{{notification.dateWellFormated}}" class=" notificationDate text-primary small">{{translations.AGO_BEFORE}}{{notification.sinceTime}} {{translations.AGO}}</div>
+                                        </a>
+                                        <a ng-switch-when="Badge" role="menuitem" href="profile">
+
+                                            <div class="glyphicon glyphicon-certificate notificationIcon"></div>
+                                            <div class="notificationInfo">{{notification.Information}}</div>
+                                            <div title="{{notification.dateWellFormated}}" class=" notificationDate text-primary small">{{translations.AGO_BEFORE}}{{notification.sinceTime}} {{translations.AGO}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li data-ng-hide="!authentication.isAuth " ng-class="{'clearBoth': shared.currentBreakpoint == 'xs' || shared.currentBreakpoint == 'sm'}">
+                                <a href="invitation" title="{{translations.INVITE}}" collapse-menu>
+                                    <img src="images/glyphicons-user-add.png"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="bug" title="{{translations.BUG_FORM_HEADER}}" collapse-menu>
+                                    <img src="images/glyphicons-bug.png" />
+                                </a>
+                            </li>
+                            <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()" collapse-menu>{{translations.LOGOUT}}</a></li>
+                            <li data-ng-hide="authentication.isAuth"> <a href="login" collapse-menu>{{translations.LOGIN}}</a></li>
+                            <!--<li data-ng-hide="authentication.isAuth"> <a href="signup">Sign Up</a></li>-->
+                        </ul>
+                    </nav><!-- /.navbar-collapse -->
+                </div>
+            </header>
+
+        </div>
+        <!--<div class="mobilePushUp"></div>-->
+        <div ng-view id="mainContainer" class="container" ng-cloak></div>
+    </div>
+    <div id="footer" class="navbar-default" ng-cloak>
+        CGU | Politique de confidentialité | ©Social Footprint 2015
+    </div>
+
+    <!-- 3rd party libraries -->
+    <script src="./scripts/jquery-2.1.3.min.js"></script>
+    <script src="./scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="./scripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="./scripts/angular.min.js"></script>
+    <script src="./scripts/angular-route.min.js"></script>
+    <script src="./scripts/angular-sanitize.min.js"></script>
+    <script src="./scripts/angular-local-storage.min.js"></script>
+    <script src="./scripts/bootstrap.min.js"></script>
+    <script src="./scripts/angular-dragdrop.min.js"></script>
+    <script src="./scripts/ng-infinite-scroll.min.js"></script>
+    <script src="./scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="./scripts/ng-embed.min.js"></script>
+    <script src="./scripts/chart.min.js"></script>
+    <script src="./scripts/angular-chart.min.js"></script>
+    <script src="./scripts/ng-text-truncate.js"></script>
+    <script src="./scripts/bootstrap-toolkit.min.js"></script>
+    <script src="./scripts/slick.min.js"></script>
+    <script src="./scripts/angular-slick.min.js"></script>
+    <script src="./scripts/social-buttons.js"></script>
+    <!-- Load app main script -->
+    <script src="./socialFootprintApp/socialFootprintApp.js"></script>
+    <!-- Load services -->
+    <script src="./socialFootprintApp/auth/authService.js"></script>
+    <script src="./socialFootprintApp/feed/feedService.js"></script>
+    <script src="./socialFootprintApp/profile/profileService.js"></script>
+    <script src="./socialFootprintApp/index/indexService.js"></script>
+    <script src="./socialFootprintApp/post/postService.js"></script>
+    <script src="./socialFootprintApp/postFocus/postFocusService.js"></script>
+    <script src="./socialFootprintApp/auth/authInterceptorService.js"></script>
+    <script src="./socialFootprintApp/shared/emailService.js"></script>
+    <script src="./socialFootprintApp/translations/translationService.js"></script>
+    <script src="./socialFootprintApp/shared/sharedService.js"></script>
+    <script src="./socialFootprintApp/voters/votersService.js"></script>
+    <!-- Load controllers -->
+    <script src="./socialFootprintApp/feed/feedController.js"></script>
+    <script src="./socialFootprintApp/auth/signup/signupController.js"></script>
+    <script src="./socialFootprintApp/auth/login/loginController.js"></script>
+    <script src="./socialFootprintApp/feed/feedController.js"></script>
+    <script src="./socialFootprintApp/auth/externalLogin/associateController.js"></script>
+    <script src="./socialFootprintApp/index/indexController.js"></script>
+    <script src="./socialFootprintApp/profile/profileController.js"></script>
+    <script src="./socialFootprintApp/post/postController.js"></script>
+    <script src="./socialFootprintApp/postFocus/postFocusController.js"></script>
+    <script src="./socialFootprintApp/pictureZoomIn/zoomInController.js"></script>
+    <script src="./socialFootprintApp/tutorial/tutorialController.js"></script>
+    <script src="./socialFootprintApp/invitation/invitationController.js"></script>
+    <script src="./socialFootprintApp/voters/votersController.js"></script>
+    <script src="./socialFootprintApp/bug/bugController.js"></script>
+</body>
+</html>

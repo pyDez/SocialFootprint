@@ -1,0 +1,46 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Personnes ayant voté </h3>
+</div>
+
+<div class="modal-body text-center votersBody">
+        <div class="col-md-6 votersColumn votersSeparationLeft">
+            <img src="images/cyclicLoader.GIF" ng-if="!loaded" class="text-center votersLoader" />
+            <h4 class="text-center" ng-if="loaded"><span class="glyphicon glyphicon-thumbs-up"></span></h4>
+            
+            <div class="list-group" ng-if="votersList.length > 0">
+                <div ng-repeat="item in votersList" class="list-group-item voterItem voterItemLeft" ng-if="item.Vote.UpPostId == post.Post.PostId">
+                    <a href="profile/{{item.Voter.AppUserId}}">
+                        
+                        <img ng-if="profile.IsFacebookProvided" class="indexProfilePicture" ng-src="http://graph.facebook.com/{{item.Voter.FacebookDetail.FacebookUserId}}/picture" />
+                        <img ng-if="!profile.IsFacebookProvided && profile.IsTwitterProvided" class="indexProfilePicture" ng-src="https://twitter.com/{{item.Voter.TwitterDetail.ScreenName}}/profile_image?size=normal" />
+                        {{item.Voter.FirstName}} {{item.Voter.LastName}}
+                        <span ng-if="item.Count>1" class="small lightGrey"> x{{item.Count}}</span>
+                    </a>
+                </div>
+            </div>
+            <div ng-if="loaded && upCount==0">
+                {{translationService.translations.NO_UP_VOTERS}}
+            </div>
+        </div>
+        <div class="col-md-6 votersColumn votersSeparationRight">
+            <img src="images/cyclicLoader.GIF" ng-if="!loaded" class="text-center votersLoader" />
+            <h4 class="text-center" ng-if="loaded"><span class="glyphicon glyphicon-thumbs-down"></span></h4>
+            
+            <div class=" list-group" ng-if="votersList.length > 0">
+                <div ng-repeat="item in votersList" class="list-group-item voterItem voterItemRight" ng-if="item.Vote.DownPostId == post.Post.PostId">
+                    <a href="profile/{{item.Voter.AppUserId}}">
+                        <img ng-if="profile.IsFacebookProvided" class="indexProfilePicture" ng-src="http://graph.facebook.com/{{item.Voter.FacebookDetail.FacebookUserId}}/picture" />
+                        <img ng-if="!profile.IsFacebookProvided && profile.IsTwitterProvided" class="indexProfilePicture" ng-src="https://twitter.com/{{item.Voter.TwitterDetail.ScreenName}}/profile_image?size=normal" />
+                        {{item.Voter.FirstName}} {{item.Voter.LastName}}
+                        <span ng-if="item.Count>1" class="small lightGrey"> x{{item.Count}}</span>
+                    </a>
+                </div>
+            </div>
+            <div ng-if="loaded && downCount==0">
+                {{translationService.translations.NO_DOWN_VOTERS}}
+            </div>
+        </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>

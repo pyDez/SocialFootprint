@@ -1,0 +1,55 @@
+﻿
+
+<div class="col-md-6 col-sm-12 col-md-push-6 socialLoginContainer ">
+    <!--<h2 class="form-login-heading">Social Logins </h2>-->
+    <div class="hidden-sm hidden-xs pushDown"></div>
+    <!--<button class="btn btn-lg btn-warning btn-block" type="button" data-ng-click="authExternalProvider('Facebook')"><span class="glyphicon glyphicon-user"> </span>{{translationService.translations.LOGIN_FACEBOOK}} <span class="small"> {{translationService.translations.BETA_ONLY}}</span></button>-->
+    <button class="btn btn-lg btn-warning btn-block" type="button" data-ng-click="authExternalProvider('Twitter')"><span class="glyphicon glyphicon-user"> </span>{{translationService.translations.LOGIN_TWITTER}}</button>
+    <div data-ng-hide="message == ''" class="alert alert-danger">
+        {{message}}
+    </div>
+
+    <!--Attention doublon ! pas moyen de faire une mise en page propre sinon...-->
+    <div ng-switch="translationService.translations.LANG" ng-if="(sharedFromService.currentBreakpoint == 'lg' || sharedFromService.currentBreakpoint == 'md')">
+        <div ng-switch-when="fr">
+            <iframe id="iframe_container" class="preziLogin" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://prezi.com/embed/jaanda-zyvy1/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0VTNiT012NU5leWQyUFFJVTFHaXp2T3RBPT0&amp;landing_sign=B8IUGaoa1r4vUVq1sAs578uzmHTqtt31YME0Y6_sIMs"></iframe>
+        </div>
+        <div ng-switch-when="en">
+
+            <iframe id="iframe_container" class="preziLogin" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://prezi.com/embed/sq0lxv3dm8q2/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0cnRsZHdNeXBRVUlWUGdJTFdjalB5TnRnPT0&amp;landing_sign=AoXJF7Vvrk3G0I79AjFuPLS0F5VVk0cnykzBPH5O8vU"></iframe>
+        </div>
+        <div ng-switch-default>
+            <iframe id="iframe_container" class="preziLogin" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://prezi.com/embed/sq0lxv3dm8q2/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0cnRsZHdNeXBRVUlWUGdJTFdjalB5TnRnPT0&amp;landing_sign=AoXJF7Vvrk3G0I79AjFuPLS0F5VVk0cnykzBPH5O8vU"></iframe>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-md-6 col-sm-12 col-md-pull-6 text-center">
+
+
+
+
+    <span class="loginTitle">{{translationService.translations.SLOGAN}}</span>
+    <img class="loginImage" ng-src="images/mascotte_trio_{{translationService.translations.LANG}}.png" />
+    {{translationService.translations.LANDING_INFO_1}}<br />
+    {{translationService.translations.LANDING_INFO_2}}
+
+</div>
+<div class="col-sm-12">
+    <!--Attention doublon ! pas moyen de faire une mise en page propre sinon...-->
+    <div ng-switch="translationService.translations.LANG" ng-if="(sharedFromService.currentBreakpoint == 'sm' || sharedFromService.currentBreakpoint == 'xs')">
+        <div ng-switch-when="fr">
+            <iframe id="iframe_container" class="preziLogin" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://prezi.com/embed/jaanda-zyvy1/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0VTNiT012NU5leWQyUFFJVTFHaXp2T3RBPT0&amp;landing_sign=B8IUGaoa1r4vUVq1sAs578uzmHTqtt31YME0Y6_sIMs"></iframe>
+        </div>
+        <div ng-switch-when="en">
+
+            <iframe id="iframe_container" class="preziLogin" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://prezi.com/embed/sq0lxv3dm8q2/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0cnRsZHdNeXBRVUlWUGdJTFdjalB5TnRnPT0&amp;landing_sign=AoXJF7Vvrk3G0I79AjFuPLS0F5VVk0cnykzBPH5O8vU"></iframe>
+        </div>
+        <div ng-switch-default>
+            <iframe id="iframe_container" class="preziLogin" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://prezi.com/embed/sq0lxv3dm8q2/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0cnRsZHdNeXBRVUlWUGdJTFdjalB5TnRnPT0&amp;landing_sign=AoXJF7Vvrk3G0I79AjFuPLS0F5VVk0cnykzBPH5O8vU"></iframe>
+        </div>
+    </div>
+</div>
+
+

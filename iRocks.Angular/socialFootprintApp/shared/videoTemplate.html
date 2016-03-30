@@ -1,0 +1,52 @@
+﻿<!--==========Video Embedding code (Youtube and vimeo)============-->
+<div class="ne-video" ng-if="video.host">
+    <div class="ne-video-preview" ng-hide="nePlayVideo">
+        <div class="ne-video-thumb" ng-click="nePlayVideo=!nePlayVideo">
+            <img ng-src="{{video.thumbnail}}" alt="" />
+            <i class="fa fa-play-circle-o"></i>
+        </div>
+        <div class="ne-video-detail">
+            <div class="ne-video-title">
+                <a ng-href="{{video.url}}">{{video.title}}</a>
+            </div>
+            <div class="ne-video-desc">
+                {{video.description}}
+            </div>
+        </div>
+    </div>
+    <div class="ne-video-player" ng-if="nePlayVideo">
+        <iframe ng-src="{{video.embedSrc}}" frameborder="0" width="{{video.width}}" height="{{video.height}}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+</div>
+
+<!--=====video player for mp4 and other html5 player supported videos==-->
+
+<div class="ne-video" ng-if="video.basic">
+    <div class="ne-video-player">
+        <div class="player">
+            <video src="{{video.basic}}" controls>
+            </video>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="ne-video" ng-if="!video.basic && !video.host && !video.isFlash">
+    <video src="{{neText}}" controls>
+        <p>
+            To view this video please enable JavaScript, and consider upgrading to a web browser
+            that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+</div>
+<div class="ne-video" ng-if="!video.basic && !video.host && video.isFlash">
+    <iframe src="{{video.src}}" frameborder="0" width="320" height="400" type="application/x-shockwave-flash" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+        <embed src="{{video.src}}" width="320" height="400" play="false" loop="false" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+               type="application/x-shockwave-flash"/>
+    </iframe>
+
+    
+
+</div>
+

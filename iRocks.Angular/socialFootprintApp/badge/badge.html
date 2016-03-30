@@ -1,0 +1,7 @@
+﻿<div class="badgeCollected" data-trigger="focus" data-toggle="tooltip" data-placement="top" title="{{badge.Badge.Explanation}}" tooltip>
+    <img src="images/medal_bronze.png" ng-if="badge.Badge.Level<30" />
+    <img src="images/medal_silver.png" ng-if="badge.Badge.Level>=30 && badge.Badge.Level<50" />
+    <img src="images/medal_gold.png" ng-if="badge.Badge.Level>=50" />
+    {{badge.Badge.Label}}
+    <span ng-if="badge.Count>1" class="lightGrey small"> x{{badge.Count}}</span>
+</div>

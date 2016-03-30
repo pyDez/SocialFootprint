@@ -1,0 +1,220 @@
+﻿
+<div>
+    <form class="form-horizontal col-md-6 col-sm-12" name="bugForm" role="form">
+        <h2 class="form-login-heading">{{translationService.translations.BUG_FORM_HEADER}}</h2>
+
+        <div class="marginUp">
+            <label class="col-md-12">{{translationService.translations.BUG_FORM_PAGE_Q}}</label>
+            <div class="btn-toolbar" data-toggle="buttons">
+                <div class="btn-group btn-group-justified marginUp" role="group">
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'Home'">{{translationService.translations.HOME}}</label>
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'Top'">{{translationService.translations.TOP}}</label>
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'Flop'">{{translationService.translations.FLOP}}</label>
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'Profile'">{{translationService.translations.PROFILE}}</label>
+                </div>
+                <div class="btn-group btn-group-justified marginUp" role="group">
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'Invitation'">{{translationService.translations.INVITATION}}</label>
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'SignUp'">{{translationService.translations.REGISTER}}</label>
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'LogIn'">{{translationService.translations.LOGIN}}</label>
+                    <label class="btn btn-default borderLightGrey" ng-model="bugPlace" uib-btn-radio="'Other'">{{translationService.translations.OTHER}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="marginUp">
+            <label for="passwordInput" class=" col-md-12">{{translationService.translations.BUG_FORM_DESCRIPTION_Q}}</label>
+            <div class="control-label col-md-12">
+                <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" placeholder="{{translationService.translations.BUG_FORM_DESCRIPTION_PLACEHOLDER}}" data-ng-model="bugDescription"></textarea>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-lg btn-primary btn-block " type="submit" ng-click="sendBug()">{{translationService.translations.BUG_FORM_SUBMIT}}</button>
+            <div data-ng-hide="sendBugFormMessage == ''" data-ng-class="(sendBugFormSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                {{sendBugFormMessage}}
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal col-md-6 col-sm-12" name="satisfactionForm" role="form">
+        <h2 class="form-login-heading">{{translationService.translations.SATISFACTION_FORM_HEADER}}</h2>
+
+      
+            <uib-accordion close-others="false">
+                <uib-accordion-group heading="{{translationService.translations.SATISFACTION_FORM_DESIGN_HEADER}}" is-open="false">
+
+                    <div class="marginUp">
+                        <label class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_DEVICE_Q}} </label>
+                        <div class="btn-toolbar" data-toggle="buttons">
+                            <div class="btn-group btn-group-justified marginUp" role="group">
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.device" uib-btn-radio="'SmartPhone'">{{translationService.translations.SMARTPHONE}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.device" uib-btn-radio="'Tablet'">{{translationService.translations.TABLET}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.device" uib-btn-radio="'Computer'">{{translationService.translations.COMPUTER}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.device" uib-btn-radio="'Other'">{{translationService.translations.OTHER}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_FORMAT_Q}} </label>
+                        <div class="btn-toolbar" data-toggle="buttons">
+                            <div class="btn-group btn-group-justified marginUp" role="group">
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.format" uib-btn-radio="'Browser'">{{translationService.translations.SATISFACTION_FORM_FORMAT_A_1}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.format" uib-btn-radio="'Native'">{{translationService.translations.SATISFACTION_FORM_FORMAT_A_2}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12 col-sm-12">{{translationService.translations.SATISFACTION_FORM_GLOBAL_Q}}</label>
+
+                        <fieldset class="rating">
+                            <input type="radio" id="globalStar4" name="ratingGlobal" ng-model="$parent.$parent.$parent.globalRate" value="4" /><label for="globalStar4" title="{{translationService.translations.RATING_4_STARS}}">4 stars</label>
+                            <input type="radio" id="globalStar3" name="ratingGlobal" ng-model="$parent.$parent.$parent.globalRate" value="3" /><label for="globalStar3" title="{{translationService.translations.RATING_3_STARS}}">3 stars</label>
+                            <input type="radio" id="globalStar2" name="ratingGlobal" ng-model="$parent.$parent.$parent.globalRate" value="2" /><label for="globalStar2" title="{{translationService.translations.RATING_2_STARS}}">2 stars</label>
+                            <input type="radio" id="globalStar1" name="ratingGlobal" ng-model="$parent.$parent.$parent.globalRate" value="1" /><label for="globalStar1" title="{{translationService.translations.RATING_1_STAR}}">1 star</label>
+                        </fieldset>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12 col-sm-12">{{translationService.translations.SATISFACTION_FORM_COLOR_R_Q}}</label>
+
+                        <fieldset class="rating">
+                            <input type="radio" id="colorStar4" name="ratingColor" ng-model="$parent.$parent.$parent.colorRate" value="4" /><label for="colorStar4" title="{{translationService.translations.RATING_4_STARS}}">4 stars</label>
+                            <input type="radio" id="colorStar3" name="ratingColor" ng-model="$parent.$parent.$parent.colorRate" value="3" /><label for="colorStar3" title="{{translationService.translations.RATING_3_STARS}}">3 stars</label>
+                            <input type="radio" id="colorStar2" name="ratingColor" ng-model="$parent.$parent.$parent.colorRate" value="2" /><label for="colorStar2" title="{{translationService.translations.RATING_2_STARS}}">2 stars</label>
+                            <input type="radio" id="colorStar1" name="ratingColor" ng-model="$parent.$parent.$parent.colorRate" value="1" /><label for="colorStar1" title="{{translationService.translations.RATING_1_STAR}}">1 star</label>
+                        </fieldset>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_COLOR_Q}}</label>
+                        <div class="btn-toolbar">
+                            <div class="btn-group btn-group-justified marginUp">
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.color" uib-btn-radio="'Orange'">{{translationService.translations.ORANGE}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.color" uib-btn-radio="'Blue'">{{translationService.translations.BLUE}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.color" uib-btn-radio="'Red'">{{translationService.translations.RED}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.color" uib-btn-radio="'Black'">{{translationService.translations.BLACK}}</label>
+                            </div>
+                            <div class="btn-group btn-group-justified marginUp">
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.color" uib-btn-radio="'Green'">{{translationService.translations.GREEN}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.color" uib-btn-radio="'White'">{{translationService.translations.WHITE}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.color" uib-btn-radio="'Configurable'">{{translationService.translations.CONFIGURABLE}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12 col-sm-12">{{translationService.translations.SATISFACTION_FORM_DUEL_R_Q}}</label>
+
+                        <fieldset class="rating">
+                            <input type="radio" id="duelStar4" name="ratingDuel" ng-model="$parent.$parent.$parent.duelRate" value="4" /><label for="duelStar4" title="{{translationService.translations.RATING_4_STARS}}">4 stars</label>
+                            <input type="radio" id="duelStar3" name="ratingDuel" ng-model="$parent.$parent.$parent.duelRate" value="3" /><label for="duelStar3" title="{{translationService.translations.RATING_3_STARS}}">3 stars</label>
+                            <input type="radio" id="duelStar2" name="ratingDuel" ng-model="$parent.$parent.$parent.duelRate" value="2" /><label for="duelStar2" title="{{translationService.translations.RATING_2_STARS}}">2 stars</label>
+                            <input type="radio" id="duelStar1" name="ratingDuel" ng-model="$parent.$parent.$parent.duelRate" value="1" /><label for="duelStar1" title="{{translationService.translations.RATING_1_STAR}}">1 star</label>
+                        </fieldset>
+                    </div>
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_DUEL_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.duelMessage"></textarea>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12 col-sm-12">{{translationService.translations.SATISFACTION_FORM_VOTE_R_Q}}</label>
+
+                        <fieldset class="rating">
+                            <input type="radio" id="voteStar4" name="ratingVote" ng-model="$parent.$parent.$parent.voteRate" value="4" /><label for="voteStar4" title="{{translationService.translations.RATING_4_STARS}}">4 stars</label>
+                            <input type="radio" id="voteStar3" name="ratingVote" ng-model="$parent.$parent.$parent.voteRate" value="3" /><label for="voteStar3" title="{{translationService.translations.RATING_3_STARS}}">3 stars</label>
+                            <input type="radio" id="voteStar2" name="ratingVote" ng-model="$parent.$parent.$parent.voteRate" value="2" /><label for="voteStar2" title="{{translationService.translations.RATING_2_STARS}}">2 stars</label>
+                            <input type="radio" id="voteStar1" name="ratingVote" ng-model="$parent.$parent.$parent.voteRate" value="1" /><label for="voteStar1" title="{{translationService.translations.RATING_1_STAR}}">1 star</label>
+                        </fieldset>
+                    </div>
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_VOTE_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.voteMessage"></textarea>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12 col-sm-12">{{translationService.translations.SATISFACTION_FORM_FOOTPRINT_R_Q}}</label>
+
+                        <fieldset class="rating">
+                            <input type="radio" id="footprintStar4" name="ratingFootprint" ng-model="$parent.$parent.$parent.footprintRate" value="4" /><label for="footprintStar4" title="{{translationService.translations.RATING_4_STARS}}">4 stars</label>
+                            <input type="radio" id="footprintStar3" name="ratingFootprint" ng-model="$parent.$parent.$parent.footprintRate" value="3" /><label for="footprintStar3" title="{{translationService.translations.RATING_3_STARS}}">3 stars</label>
+                            <input type="radio" id="footprintStar2" name="ratingFootprint" ng-model="$parent.$parent.$parent.footprintRate" value="2" /><label for="footprintStar2" title="{{translationService.translations.RATING_2_STARS}}">2 stars</label>
+                            <input type="radio" id="footprintStar1" name="ratingFootprint" ng-model="$parent.$parent.$parent.footprintRate" value="1" /><label for="footprintStar1" title="{{translationService.translations.RATING_1_STAR}}">1 star</label>
+                        </fieldset>
+                    </div>
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_FOOTPRINT_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.footprintMessage"></textarea>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12 col-sm-12">{{translationService.translations.SATISFACTION_FORM_SPEED_R_Q}}</label>
+
+                        <fieldset class="rating">
+                            <input type="radio" id="speedStar4" name="ratingSpeed" ng-model="$parent.$parent.$parent.speedRate" value="4" /><label for="speedStar4" title="{{translationService.translations.RATING_4_STARS}}">4 stars</label>
+                            <input type="radio" id="speedStar3" name="ratingSpeed" ng-model="$parent.$parent.$parent.speedRate" value="3" /><label for="speedStar3" title="{{translationService.translations.RATING_3_STARS}}">3 stars</label>
+                            <input type="radio" id="speedStar2" name="ratingSpeed" ng-model="$parent.$parent.$parent.speedRate" value="2" /><label for="speedStar2" title="{{translationService.translations.RATING_2_STARS}}">2 stars</label>
+                            <input type="radio" id="speedStar1" name="ratingSpeed" ng-model="$parent.$parent.$parent.speedRate" value="1" /><label for="speedStar1" title="{{translationService.translations.RATING_1_STAR}}">1 star</label>
+                        </fieldset>
+                    </div>
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_SPEED_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.speedMessage"></textarea>
+                        </div>
+                    </div>
+                </uib-accordion-group>
+                <uib-accordion-group heading="{{translationService.translations.SATISFACTION_FORM_FUNCTION_HEADER}}">
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_WEIRD_FUNCTION_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.weirdFunction" placeholder="{{translationService.translations.SATISFACTION_FORM_WEIRD_FUNCTION_PLACEHOLDER}}"></textarea>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_MISSING_FUNCTION_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.missingFunction" placeholder="{{translationService.translations.SATISFACTION_FORM_MISSING_FUNCTION_PLACEHOLDER}}"></textarea>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_BUG_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.bug" placeholder="{{translationService.translations.SATISFACTION_FORM_BUG_PLACEHOLDER}}"></textarea>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label for="passwordInput" class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_MAKE_IT_BETTER_Q}}</label>
+                        <div class="control-label col-md-12">
+                            <textarea rows="4" cols="50" name="messageInput" class="form-control marginDown" data-ng-model="$parent.$parent.$parent.makeItBetter" placeholder="{{translationService.translations.SATISFACTION_FORM_MAKE_IT_BETTER_PLACEHOLDER}}"></textarea>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_DAILY_USE_Q}}</label>
+                        <div class="btn-toolbar" data-toggle="buttons">
+                            <div class="btn-group btn-group-justified marginUp" role="group">
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.dailyUse" uib-btn-radio="'Yes'">{{translationService.translations.YES}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.dailyUse" uib-btn-radio="'No'">{{translationService.translations.NO}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marginUp">
+                        <label class=" col-md-12">{{translationService.translations.SATISFACTION_FORM_BETTER_THAN_FACEBOOK_Q}}</label>
+                        <div class="btn-toolbar" data-toggle="buttons">
+                            <div class="btn-group btn-group-justified marginUp" role="group">
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.betterThanFB" uib-btn-radio="'Yes'">{{translationService.translations.YES}}</label>
+                                <label class="btn btn-default borderLightGrey" ng-model="$parent.$parent.$parent.betterThanFB" uib-btn-radio="'No'">{{translationService.translations.NO}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion-group>
+            </uib-accordion>
+
+        <div>
+            <button class="btn btn-lg btn-warning btn-block " type="submit" ng-click="sendSatisfaction()">{{translationService.translations.SEND}}</button>
+            <div data-ng-hide="sendSatisfactionFormMessage == ''" data-ng-class="(sendSatisfactionFormSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                {{sendSatisfactionFormMessage}}
+            </div>
+        </div>
+    </form>
+
+
+</div>

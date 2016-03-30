@@ -1,0 +1,10 @@
+﻿
+<div class="profilePost list-group col-md-12 col-lg-8 col-lg-offset-2 list-group-item-info" ng-if="post">
+    <div class="text-center lead category">{{post.Post.PostCategory.Label}}</div>
+    <div class="displayTableCell">
+        <div>
+            <div class="profilePostContainer" ng-repeat="post in [post]" ng-include="'socialFootprintApp/post/post.html'"></div>
+
+        </div>
+    </div>
+</div>

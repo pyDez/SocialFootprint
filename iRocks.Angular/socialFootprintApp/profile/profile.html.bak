@@ -1,0 +1,92 @@
+﻿<div ng-if="!dataLoaded" class="text-center feedLoader" center-loader>
+
+    <img src="images/Loader.GIF" />
+</div>
+
+
+<div id="ProfileGlobal" class="col-md-12" ng-if="dataLoaded">
+    <div id="ProfileTitle">
+        <ul class="list-inline">
+            <li>
+                <img ng-src="http://graph.facebook.com/{{profile.FacebookDetail.FacebookUserId}}/picture" />
+            </li>
+            <li class="middleAlignement">
+                <div>{{profile.FirstName}} {{profile.LastName}}  </div>
+                <div ng-include="'socialFootprintApp/badge/badge.html'" onload="badge = profile.XpBadge"> </div>
+            </li>
+        </ul>
+        <div>
+
+
+
+        </div>
+        <div class="col-md-offset-3 col-md-6">
+            <div ng-repeat="skill in footprintData" class="text-center">
+                <span class="skillLabel">{{skill.SkillCategory.Label}}    {{skill.SkillLevelAsync}}%</span>
+                <progressbar class="progress-striped active" value="skill.SkillLevelAsync" type="{{skill.type}}"> </progressbar>
+                <div ng-repeat="badge in skill.CategoryBadges" ng-include="'socialFootprintApp/badge/badge.html'" class="inlineBlock">
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-offset-3 col-md-6 text-center" >
+            <div ng-repeat="badge in profile.PostBadges" ng-include="'socialFootprintApp/badge/badge.html'" class="inlineBlock postBadge">
+
+            </div>
+        </div>
+        <div class="col-md-offset-3 col-md-6 social-sharing" ng-if="displayShareButtons">
+
+            <!-- https://developers.facebook.com/docs/plugins/share-button/ -->
+            <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u={{profileUrl}}" class="share-facebook">
+                <span class="icon icon-facebook" aria-hidden="true"></span>
+                <span class="share-title">{{translationService.translations.SHARE}}</span>
+            </a>
+
+            <!-- https://dev.twitter.com/docs/intents -->
+            <a target="_blank" href="http://twitter.com/share?url={{profileUrl}}&amp;text=Hey%20!%20Have%20a%20look%20on%20my%20social%20footprint%20!&amp;" class="share-twitter">
+                <span class="icon icon-twitter" aria-hidden="true"></span>
+                <span class="share-title">Tweet</span>
+            </a>
+
+            <!--
+              https://developers.pinterest.com/pin_it/
+              Pinterest get data from the same Open Graph meta tags Facebook uses
+            -->
+            <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{profileUrl}}&amp;media={{logoUrl}}&amp;description=Hey%20!%20Have%20a%20look%20on%20my%20social%20footprint%20!" class="share-pinterest">
+                <span class="icon icon-pinterest" aria-hidden="true"></span>
+                <span class="share-title">Pin it</span>
+            </a>
+
+            <!-- https://developers.google.com/+/web/share/ -->
+            <a target="_blank" href="http://plus.google.com/share?url={{profileUrl}}" class="share-google">
+                <!-- Cannot get Google+ share count with JS yet -->
+                <span class="icon icon-google" aria-hidden="true"></span>
+                <span class="share-title">+1</span>
+            </a>
+        </div>
+        <div class="profileActionBtns col-md-offset-3 col-md-6">
+            <a ng-click="openInNewTab('https://www.facebook.com/'+profile.FacebookDetail.FacebookUserId)">
+                <span class="glyphicon glyphicon-new-window ">
+                </span>
+                {{translationService.translations.CHECK_PROFILE}}
+            </a>
+        </div>
+    </div>
+
+    <div ng-repeat="post in profile.Posts" class="profilePost list-group col-md-12 col-lg-8 col-lg-offset-2 list-group-item-info">
+        <div class="text-center lead category">{{post.Post.PostCategory.Label}}</div>
+        <div class="displayTableCell">
+            <div>
+                <div class="profilePostContainer" ng-repeat="post in [post]" ng-include="'socialFootprintApp/post/post.html'"></div>
+
+            </div>
+        </div>
+    </div>
+    <div ng-if="! isAuthenticated" class="col-md-12">
+        <a href="login/">
+            {{translationService.translations.JOIN}}
+        </a>
+    </div>
+</div>

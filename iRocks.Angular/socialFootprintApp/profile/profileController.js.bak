@@ -1,0 +1,91 @@
+﻿(function (app) {
+
+    var profileController = function ($scope, profileService, $routeParams, footprintTools, $window, $timeout, $location, translationService) {
+       
+        function contains(a, obj) {
+            for (var i = 0; i < a.length; i++) {
+                if (a[i] === obj) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        var _parseProfile = function (data) {
+            $scope.isAuthenticated = data.isAuthenticated;
+            $scope.profile = data.Result;
+            var tempPost = data.Result.Posts.slice(0); //clone des posts
+            $scope.profile.Posts = [];
+            for (i = 0; i < tempPost.length; i++) {
+                $scope.profile.Posts.push({
+                    Post: tempPost[i],
+                    User: data.Result
+                });
+            }
+            $scope = footprintTools.initFootprint($scope, $scope.profile.Footprint);
+            var tempBadges = $scope.profile.Badges;
+            $scope.profile.Badges=[];
+            var badgeIds = [];
+            for (i = 0; i < tempBadges.length; i++) {
+                var contains = false;
+                for (var j = 0; j < $scope.profile.Badges.length; j++) {
+                    if(tempBadges[i].Badge.BadgeId == $scope.profile.Badges[j].Badge.BadgeId )
+                    {
+                        contains = true;
+                        ++$scope.profile.Badges[j].Count;
+                    }
+                }
+                if (!contains) {
+                    $scope.profile.Badges.push(tempBadges[i]);
+                    $scope.profile.Badges[$scope.profile.Badges.length-1].Count = 1;
+                }
+               
+
+            }
+
+            $timeout(function () {
+                $scope = footprintTools.createFootprint($scope, $scope.profile.Footprint);
+            },100);
+        };
+
+        var _getMyProfile = function () {
+            profileService.getMyProfile("Friends").then(function (results) {
+
+                _parseProfile(results.data);
+                $scope.profileUrl += "/" + results.data.Result.AppUserId;
+                $scope.displayShareButtons = true;
+            }, function (error) {
+                //alert(error.data.message);
+            });
+        };
+
+
+        if (!$routeParams.appuserid) {
+            _getMyProfile();
+        }
+        else {
+            profileService.getProfile($routeParams.appuserid).then(function (results) {
+
+                _parseProfile(results.data);
+            }, function (error) {
+                _getMyProfile();
+            });
+        }
+
+        var _openInNewTab = function (href) {
+            footprintTools.openInNewTab($window, href)
+        };
+
+       
+
+        $scope.isAuthenticated = true;
+        $scope.displayShareButtons = false;
+        $scope.isDuel = false;
+        $scope.openInNewTab = _openInNewTab;
+        $scope.profileUrl = $location.absUrl();
+        $scope.logoUrl = $location.absUrl().substring(0, $location.absUrl().indexOf("profile")) + "images/square360.png"
+        $scope.translationService = translationService;
+    };
+    app.controller("profileController", ["$scope", 'profileService', '$routeParams', 'footprintTools', '$window', '$timeout', '$location', 'translationService', profileController]);
+}(angular.module("socialFootprintApp")));
+

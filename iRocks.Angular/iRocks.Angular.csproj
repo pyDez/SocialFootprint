@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75880B86-936E-4AA1-9EA6-1CFBD1A64DD4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iRocks.Angular</RootNamespace>
+    <AssemblyName>iRocks.Angular</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\angular-chart.css" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\highlight.default.min.css" />
+    <Content Include="css\ng-embed.min.css" />
+    <Content Include="css\ng-embed\emojis%402x.png" />
+    <Content Include="css\ng-embed\emojis.png" />
+    <Content Include="css\ng-embed\loader.svg" />
+    <Content Include="css\site.css" />
+    <Content Include="css\slick-theme.css" />
+    <Content Include="css\slick.css" />
+    <Content Include="css\social-buttons.css" />
+    <Content Include="css\themes\base\accordion.css" />
+    <Content Include="css\themes\base\all.css" />
+    <Content Include="css\themes\base\autocomplete.css" />
+    <Content Include="css\themes\base\base.css" />
+    <Content Include="css\themes\base\button.css" />
+    <Content Include="css\themes\base\core.css" />
+    <Content Include="css\themes\base\datepicker.css" />
+    <Content Include="css\themes\base\dialog.css" />
+    <Content Include="css\themes\base\draggable.css" />
+    <Content Include="css\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="css\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="css\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="css\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="css\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="css\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="css\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="css\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="css\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="css\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="css\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="css\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="css\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="css\themes\base\menu.css" />
+    <Content Include="css\themes\base\progressbar.css" />
+    <Content Include="css\themes\base\resizable.css" />
+    <Content Include="css\themes\base\selectable.css" />
+    <Content Include="css\themes\base\selectmenu.css" />
+    <Content Include="css\themes\base\slider.css" />
+    <Content Include="css\themes\base\sortable.css" />
+    <Content Include="css\themes\base\spinner.css" />
+    <Content Include="css\themes\base\tabs.css" />
+    <Content Include="css\themes\base\theme.css" />
+    <Content Include="css\themes\base\tooltip.css" />
+    <Content Include="css\ubuntu.css" />
+    <Content Include="css\ui-bootstrap-csp.css" />
+    <Content Include="css\united-bootstrap.min.css" />
+    <Content Include="fonts\emoticons.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icons.svg" />
+    <Content Include="fonts\slick\slick.svg" />
+    <Content Include="Icon.png" />
+    <Content Include="images\cyclicLoader.GIF" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\fb_Square325-radius.png" />
+    <Content Include="images\glyphicons-333-certificate.png" />
+    <Content Include="images\glyphicons-bell.png" />
+    <Content Include="images\glyphicons-bug.png" />
+    <Content Include="images\glyphicons-user-add.png" />
+    <Content Include="images\landscape_transparent_180x60.png" />
+    <Content Include="images\landscape_transparent_550x500.png" />
+    <Content Include="images\landscape_transparent_900x300.png" />
+    <Content Include="images\Loader.GIF" />
+    <Content Include="images\logo_Color.png" />
+    <Content Include="images\mascotte_trio_en.png" />
+    <Content Include="images\mascotte_trio_fr.png" />
+    <Content Include="images\mascotte_twitter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\medal_bronze.png" />
+    <Content Include="images\medal_gold.png" />
+    <Content Include="images\medal_silver.png" />
+    <Content Include="images\Square360-radius.png" />
+    <Content Include="images\Square360.png" />
+    <Content Include="scripts\angular-chart.min.js" />
+    <Content Include="scripts\angular-dragdrop.min.js" />
+    <Content Include="scripts\angular-local-storage.min.js" />
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular-sanitize.js" />
+    <Content Include="scripts\angular-sanitize.min.js" />
+    <Content Include="scripts\angular-slick.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\angular-sanitize.min.js.map" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\emoticons.eot" />
+    <Content Include="fonts\emoticons.ttf" />
+    <Content Include="fonts\emoticons.woff" />
+    <Content Include="scripts\bootstrap-toolkit.min.js" />
+    <Content Include="scripts\Chart.min.js.map">
+      <DependentUpon>chart.min.js</DependentUpon>
+    </Content>
+    <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="css\bootstrap.css.map" />
+    <Content Include="fonts\ubuntu.woff2" />
+    <Content Include="fonts\slick\slick.eot" />
+    <Content Include="fonts\slick\slick.ttf" />
+    <Content Include="fonts\slick\slick.woff" />
+    <Content Include="fonts\icons.eot" />
+    <Content Include="fonts\icons.ttf" />
+    <Content Include="fonts\icons.woff" />
+    <None Include="Properties\PublishProfiles\Angular.pubxml" />
+    <None Include="Properties\PublishProfiles\socialfootprint.pubxml" />
+    <None Include="Properties\PublishProfiles\socialfootprintRecette.pubxml" />
+    <Content Include="socialFootprintApp\badge\badge.html" />
+    <Content Include="socialFootprintApp\bug\bug.html" />
+    <Content Include="socialFootprintApp\bug\bugController.js" />
+    <Content Include="socialFootprintApp\footprint\footprint.html" />
+    <Content Include="socialFootprintApp\shared\sharedService.js" />
+    <Content Include="socialFootprintApp\translations\translationService.js" />
+    <Content Include="socialFootprintApp\translations\translation_fr.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="socialFootprintApp\translations\translation_en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="index.html" />
+    <None Include="scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\Chart.js" />
+    <Content Include="scripts\chart.min.js" />
+    <Content Include="scripts\highlight.min.js" />
+    <Content Include="scripts\jquery-2.1.3.js" />
+    <Content Include="scripts\jquery-2.1.3.min.js" />
+    <Content Include="authComplete.html" />
+    <Content Include="scripts\jquery-ui-1.11.4.js" />
+    <Content Include="scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="scripts\jquery.ui.touch-punch.min.js" />
+    <Content Include="scripts\ng-embed.min.js" />
+    <Content Include="scripts\ng-infinite-scroll.min.js" />
+    <Content Include="scripts\ng-text-truncate.js" />
+    <Content Include="scripts\npm.js" />
+    <Content Include="scripts\slick.min.js" />
+    <Content Include="scripts\social-buttons.js" />
+    <Content Include="socialFootprintApp\auth\externalLogin\associate.html" />
+    <Content Include="socialFootprintApp\auth\externalLogin\associateController.js" />
+    <Content Include="socialFootprintApp\auth\externalLogin\authComplete.js" />
+    <Content Include="socialFootprintApp\auth\authInterceptorService.js" />
+    <Content Include="socialFootprintApp\auth\authService.js" />
+    <Content Include="socialFootprintApp\auth\login\login.html" />
+    <Content Include="socialFootprintApp\auth\login\loginController.js" />
+    <Content Include="socialFootprintApp\auth\signup\signup.html" />
+    <Content Include="socialFootprintApp\auth\signup\signupController.js" />
+    <Content Include="socialFootprintApp\feed\feed.html" />
+    <Content Include="socialFootprintApp\feed\feedController.js" />
+    <Content Include="socialFootprintApp\feed\feedService.js" />
+    <Content Include="socialFootprintApp\index\indexController.js" />
+    <Content Include="socialFootprintApp\index\indexService.js" />
+    <Content Include="socialFootprintApp\invitation\invitation.html" />
+    <Content Include="socialFootprintApp\invitation\invitationController.js" />
+    <Content Include="socialFootprintApp\shared\emailService.js" />
+    <Content Include="socialFootprintApp\postFocus\postFocus.html" />
+    <Content Include="socialFootprintApp\postFocus\postFocusController.js" />
+    <Content Include="socialFootprintApp\postFocus\postFocusService.js" />
+    <Content Include="socialFootprintApp\profile\profile.html" />
+    <Content Include="socialFootprintApp\profile\profileController.js" />
+    <Content Include="socialFootprintApp\profile\profileService.js" />
+    <Content Include="socialFootprintApp\profile\unauthorizedProfile.html" />
+    <Content Include="socialFootprintApp\pictureZoomIn\zoomInController.js" />
+    <Content Include="socialFootprintApp\pictureZoomIn\zoomIn.html" />
+    <Content Include="socialFootprintApp\post\post.html" />
+    <Content Include="socialFootprintApp\post\postController.js" />
+    <Content Include="socialFootprintApp\post\postService.js" />
+    <Content Include="socialFootprintApp\shared\videoTemplate.html" />
+    <Content Include="socialFootprintApp\socialFootprintApp.js" />
+    <Content Include="socialFootprintApp\tutorial\tutorial.html" />
+    <Content Include="socialFootprintApp\tutorial\tutorialController.js" />
+    <Content Include="socialFootprintApp\voters\voters.html" />
+    <Content Include="socialFootprintApp\voters\votersController.js" />
+    <Content Include="socialFootprintApp\voters\votersService.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="scripts\jquery-2.1.3.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="style\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>15028</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:15028/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
